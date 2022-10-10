@@ -1,7 +1,16 @@
+// A dummy pipeline so we can run builds in parallel.
+local ignoreThisPipeline() = {
+    name: "ignore-this-pipeline",
+    kind: "pipeline",
+    type: "docker",
+    steps: []
+};
+
 local updatePackages(pkgbase) = {
     name: "update-" + pkgbase,
     kind: "pipeline",
     type: "docker",
+    depends_on: ["ignore-this-pipeline"],
     steps: [{
         name: "update-" + pkgbase,
         image: "proget.hunterwittenborn.com/docker/makedeb/makedeb:ubuntu-jammy",
@@ -20,8 +29,10 @@ local updatePackages(pkgbase) = {
 };
 
 [
+    ignoreThisPipeline(),
+    updatePackages("bats"),
     updatePackages("docker-compose"),
-    // updatePackages("google-chrome-stable"),
-    // updatePackages("hugo"),
-    // updatePackages("just"),
+    updatePackages("google-chrome-stable"),
+    updatePackages("hugo"),
+    updatePackages("just")
 ]
