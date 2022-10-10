@@ -31,6 +31,7 @@ local updatePackages(pkgbase) = {
 [
     ignoreThisPipeline(),
     updatePackages("bats"),
+    updatePackages("chezmoi"),
     updatePackages("docker-compose"),
     updatePackages("google-chrome-stable"),
     updatePackages("hugo"),
