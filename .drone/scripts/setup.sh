@@ -8,6 +8,10 @@ sudo apt-get update
 # Install needed packages.
 sudo apt-get install curl jq git gh -y
 
+# Set up Git.
+git config --global user.name 'Kavplex Bot'
+git config --global user.email 'kavplex@hunterwittenborn.com'
+
 # Login to GitHub.
 echo "${github_api_key}" | gh auth login --with-token
 

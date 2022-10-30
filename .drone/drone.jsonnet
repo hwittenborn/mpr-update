@@ -33,7 +33,11 @@ local updatePackages(pkgbase) = {
     updatePackages("bats"),
     updatePackages("chezmoi"),
     updatePackages("docker-compose"),
+    updatePackages("drone-cli"),
+    updatePackages("element-desktop-bin"),
     updatePackages("google-chrome-stable"),
     updatePackages("hugo"),
-    updatePackages("just")
+    updatePackages("just"),
+    updatePackages("mist-bin"),
+    updatePackages("neovim")
 ]
