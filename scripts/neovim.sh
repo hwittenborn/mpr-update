@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eu
 
 # We can't use 'util/get-latest-gh-version.sh' due to how Neovim names their releases.
 mpr_version="$(util/get-pkgbuild-version.sh)"

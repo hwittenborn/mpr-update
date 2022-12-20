@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eu
 mpr_version="$(util/get-pkgbuild-version.sh)"
 glab_version="$(util/get-latest-glab-version.sh 'gitlab-org/cli')"
 

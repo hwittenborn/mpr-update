@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eu
 
 set_pbmpr_distro() {
     echo "deb [signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr ${1}" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
