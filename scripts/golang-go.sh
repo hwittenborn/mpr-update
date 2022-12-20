@@ -5,7 +5,7 @@ mpr_version="$(util/get-pkgbuild-version.sh)"
 pushd "$(mktemp -d)"
 git clone --depth 1 --no-single-branch "https://${github_url}/golang/go"
 cd go/
-latest_version="$(git tag | sort -V | grep -v '^release|^weekly|rc|beta' | tac | head -1 | sed 's|^go||')"
+latest_version="$(git tag | sort -V | grep -Ev '^release|^weekly|rc|beta' | tac | head -1 | sed 's|^go||')"
 popd
 
 if [[ "${latest_version}" != "${mpr_version}" ]]; then
