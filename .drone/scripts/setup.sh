@@ -6,14 +6,15 @@ echo "deb [signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https
 sudo apt-get update
 
 # Install needed packages.
-sudo apt-get install curl jq git gh -y
+sudo apt-get install curl jq git gh glab -y
 
 # Set up Git.
 git config --global user.name 'Kavplex Bot'
 git config --global user.email 'kavplex@hunterwittenborn.com'
 
-# Login to GitHub.
+# Login to GitHub and GitLab.
 echo "${github_api_key}" | gh auth login --with-token
+echo "${gitlab_api_key}" | glab auth login --stdin
 
 # Setup MPR SSH key.
 curl -Ls "https://shlink.${hw_url}/ci-utils" | sudo bash -

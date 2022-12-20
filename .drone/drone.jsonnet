@@ -17,7 +17,8 @@ local updatePackages(pkgbase) = {
         environment: {
             pkgbase: pkgbase,
 	        ssh_key: {from_secret: "ssh_key"},
-            github_api_key: {from_secret: "github_api_key"}
+            github_api_key: {from_secret: "github_api_key"},
+            gitlab_api_key: {from_secret: "gitlab_api_key"}
         },
         commands: [
             "sudo chown 'makedeb:makedeb' ./ -R",
@@ -35,9 +36,13 @@ local updatePackages(pkgbase) = {
     updatePackages("docker-compose"),
     updatePackages("drone-cli"),
     updatePackages("element-desktop-bin"),
+    updatePackages("fd"),
+    updatePackages("glab"),
+    updatePackages("golang-go"),
     updatePackages("google-chrome-stable"),
     updatePackages("hugo"),
     updatePackages("just"),
     updatePackages("mist-bin"),
-    updatePackages("neovim")
+    updatePackages("neovim"),
+    updatePackages("rustc")
 ]
