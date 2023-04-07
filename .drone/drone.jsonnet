@@ -44,5 +44,6 @@ local updatePackages(pkgbase) = {
     updatePackages("just"),
     updatePackages("mist-bin"),
     updatePackages("neovim"),
+    updatePackages("rclone"),
     updatePackages("rustc")
 ]
