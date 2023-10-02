@@ -1,0 +1,49 @@
+name: Update packages
+on:
+  push:
+  schedule:
+    - cron: "*/5 * * * *"
+env:
+  hw_url: "hunterwittenborn.com"
+  mpr_url: "mpr.makedeb.org"
+  github_url: "github.com"
+  ssh_key: ${{ secrets.SSH_KEY }}
+  github_api_key: ${{ secrets.GH_TOKEN_CUSTOM }}
+  gitlab_api_key: ${{ secrets.GITLAB_PAT }}
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/makedeb/makedeb:ubuntu-jammy
+      options: --user root
+    strategy:
+      matrix:
+        pkgbase:
+          - bats
+          - chezmoi
+          - docker-compose
+          - drone-cli
+          - element-desktop-bin
+          - fd
+          - glab
+          - golang-go
+          - google-chrome-stable
+          - hugo
+          - just
+          - mist-bin
+          - neovim
+          - rclone
+          - rustc
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run setup script
+        run: util/setup.sh
+        env:
+          pkgbase: ${{ matrix.pkgbase }}
+      - name: Run update script
+        run: sudo -u makedeb "scripts/${{ matrix.pkgbase }}.sh"
+        env:
+          pkgbase: ${{ matrix.pkgbase }}
