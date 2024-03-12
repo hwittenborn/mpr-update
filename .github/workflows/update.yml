@@ -45,6 +45,6 @@ jobs:
         env:
           pkgbase: ${{ matrix.pkgbase }}
       - name: Run update script
-        run: sudo -u makedeb "scripts/${{ matrix.pkgbase }}.sh"
+        run: sudo -Eu makedeb "scripts/${{ matrix.pkgbase }}.sh"
         env:
           pkgbase: ${{ matrix.pkgbase }}
