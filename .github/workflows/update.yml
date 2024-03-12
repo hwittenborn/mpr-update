@@ -19,6 +19,7 @@ jobs:
       image: ghcr.io/makedeb/makedeb:ubuntu-jammy
       options: --user root
     strategy:
+      fail-fast: false
       matrix:
         pkgbase:
           - bats

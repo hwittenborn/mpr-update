@@ -13,7 +13,7 @@ sudo apt-get install curl jq git gh glab -y
 # This shouldn't ever be the case, but it's here as a safeguard just in case.
 maintainer="$(curl 'https://mpr.makedeb.org/packages-meta-ext-v2.json.gz' | jq -r ".[] | select(.PackageBase==\"${pkgbase}\").Maintainer")"
 
-if [[ "${maintainer}" != 'hwittenborn' || "${maintainer}" != 'kavplex' ]]; then
+if [[ "${maintainer}" != 'hwittenborn' && "${maintainer}" != 'kavplex' ]]; then
     echo "The package '${pkgbase}' isn't owned by an appropriate user! Aborting..."
     exit 1
 fi
