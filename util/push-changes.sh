@@ -10,4 +10,4 @@ makedeb --print-srcinfo > .SRCINFO
 
 git add .
 git commit -m "Bump version to '${pkgver}-${pkgrel}'"
-git push
+GIT_SSH_COMMAND='ssh -v' git push
