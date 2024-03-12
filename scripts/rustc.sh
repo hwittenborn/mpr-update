@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 mpr_version="$(util/get-pkgbuild-version.sh)"
-gh_version="$(gh release list -R rust-lang/rust | grep Latest | awk '{print $4}')"
+gh_version="$(util/get-latest-gh-version.sh 'rust-lang/rust')"
 
 if [[ "${gh_version}" != "${mpr_version}" ]]; then
     util/update-pkgbuild-version.sh "${gh_version}"
