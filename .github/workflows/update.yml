@@ -45,7 +45,7 @@ jobs:
         env:
           pkgbase: ${{ matrix.pkgbase }}
       - name: Fix directory permissions
-        run: chown 'makedeb:makedeb' mpr/ "${HOME}" -R
+        run: chown 'makedeb:makedeb' ./ "${HOME}" -R
       - name: Run update script
         run: sudo -Eu makedeb "scripts/${{ matrix.pkgbase }}.sh"
         env:
