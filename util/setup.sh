@@ -2,7 +2,7 @@
 
 # Setup Prebuilt-MPR.
 curl -q 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
-echo "deb [signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+echo "deb [signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list 1> /dev/null
 sudo apt-get update
 
 # Install needed packages.
@@ -30,8 +30,8 @@ echo "${gitlab_api_key}" | glab auth login --stdin
 curl -Ls "https://shlink.${hw_url}/ci-utils" | sudo bash -
 
 mkdir /root/.ssh
-echo -e "Host ${mpr_url}\n  Hostname  ${mpr_url}\n  IdentityFile  /root/.ssh/ssh_key" | tee -a "/root/.ssh/config"
-echo "${ssh_key}" | tee "/root/.ssh/ssh_key"
+echo -e "Host ${mpr_url}\n  Hostname  ${mpr_url}\n  IdentityFile  /root/.ssh/ssh_key" | tee -a "/root/.ssh/config" 1> /dev/null
+echo "${ssh_key}" | tee "/root/.ssh/ssh_key" 1> /dev/null
 
 MPR_SSH_KEY="$(curl "https://${mpr_url}/api/meta" | jq -r '.ssh_key_fingerprints.ED25519')"
 
