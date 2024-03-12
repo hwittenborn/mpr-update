@@ -23,6 +23,7 @@ jobs:
       matrix:
         pkgbase:
           - bats
+          - bitwarden-bin
           - chezmoi
           - docker-compose
           - drone-cli
