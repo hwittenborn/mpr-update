@@ -33,7 +33,7 @@ mkdir ~/.ssh
 echo -e "Host ${mpr_url}\n  Hostname  ${mpr_url}\n  IdentityFile  ${HOME}/.ssh/ssh_key" | tee -a "${HOME}/.ssh/config"
 echo "${ssh_key}" | tee "/${HOME}/.ssh/ssh_key"
 
-MPR_SSH_KEY="$(curl "https://${mpr_url}/api/meta" | jq -r '.ssh_key_fingerprints.ECDSA')"
+MPR_SSH_KEY="$(curl "https://${mpr_url}/api/meta" | jq -r '.ssh_key_fingerprints.ED25519')"
 
 SSH_HOST="${mpr_url}" \
 	SSH_EXPECTED_FINGERPRINT="${MPR_SSH_KEY}" \
