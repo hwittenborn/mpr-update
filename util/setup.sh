@@ -8,6 +8,16 @@ sudo apt-get update
 # Install needed packages.
 sudo apt-get install curl jq git gh glab -y
 
+# Abort if the package is owned by untrusted people.
+#
+# This shouldn't ever be the case, but it's here as a safeguard just in case.
+maintainer="$(curl 'https://mpr.makedeb.org/packages-meta-ext-v2.json.gz' | jq -r ".[] | select(.PackageBase==\"${pkgbase}\").Maintainer")"
+
+if [[ "${maintainer}" != 'hwittenborn' || "${maintainer}" != 'kavplex' ]]; then
+    echo "The package '${pkgbase}' isn't owned by an appropriate user! Aborting..."
+    exit 1
+fi
+
 # Set up Git.
 git config --global user.name 'Kavplex Bot'
 git config --global user.email 'kavplex@hunterwittenborn.com'
@@ -33,3 +43,5 @@ SSH_HOST="${mpr_url}" \
 # Clone the MPR Git repo.
 mkdir mpr/
 git clone "ssh://mpr@${mpr_url}/${pkgbase}" "mpr/${pkgbase}"
+
+# vim: set sw=4 expandtab:
