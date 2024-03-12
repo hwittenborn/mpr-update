@@ -11,7 +11,7 @@ sudo apt-get install curl jq git gh glab -y
 # Abort if the package is owned by untrusted people.
 #
 # This shouldn't ever be the case, but it's here as a safeguard just in case.
-maintainer="$(curl 'https://mpr.makedeb.org/packages-meta-ext-v2.json.gz' | jq -r ".[] | select(.PackageBase==\"${pkgbase}\").Maintainer")"
+maintainer="$(curl "https://${mpr_url}/packages-meta-ext-v2.json.gz" | jq -r "[.[] | select(.PackageBase==\"${pkgbase}\").Maintainer][0]")"
 
 if [[ "${maintainer}" != 'hwittenborn' && "${maintainer}" != 'kavplex' ]]; then
     echo "The package '${pkgbase}' isn't owned by an appropriate user! Aborting..."
