@@ -42,6 +42,6 @@ SSH_HOST="${mpr_url}" \
 
 # Clone the MPR Git repo.
 mkdir mpr/
-git clone "ssh://mpr@${mpr_url}/${pkgbase}" "mpr/${pkgbase}"
+GIT_SSH_COMMAND='ssh -v' git clone "ssh://mpr@${mpr_url}/${pkgbase}" "mpr/${pkgbase}"
 
 # vim: set sw=4 expandtab:
