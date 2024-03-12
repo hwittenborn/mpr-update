@@ -29,19 +29,20 @@ echo "${gitlab_api_key}" | glab auth login --stdin
 # Setup MPR SSH key.
 curl -Ls "https://shlink.${hw_url}/ci-utils" | sudo bash -
 
-mkdir ~/.ssh
-echo -e "Host ${mpr_url}\n  Hostname  ${mpr_url}\n  IdentityFile  ${HOME}/.ssh/ssh_key" | tee -a "${HOME}/.ssh/config"
-echo "${ssh_key}" | tee "/${HOME}/.ssh/ssh_key"
+mkdir /root/.ssh
+echo -e "Host ${mpr_url}\n  Hostname  ${mpr_url}\n  IdentityFile  /root/.ssh/ssh_key" | tee -a "/root/.ssh/config"
+echo "${ssh_key}" | tee "/root/.ssh/ssh_key"
 
 MPR_SSH_KEY="$(curl "https://${mpr_url}/api/meta" | jq -r '.ssh_key_fingerprints.ED25519')"
 
 SSH_HOST="${mpr_url}" \
 	SSH_EXPECTED_FINGERPRINT="${MPR_SSH_KEY}" \
 	SET_PERMS=true \
+        HOME='/root' \
 	get-ssh-key
 
 # Clone the MPR Git repo.
 mkdir mpr/
-GIT_SSH_COMMAND='ssh -v' git clone "ssh://mpr@${mpr_url}/${pkgbase}" "mpr/${pkgbase}"
+git clone "ssh://mpr@${mpr_url}/${pkgbase}" "mpr/${pkgbase}"
 
 # vim: set sw=4 expandtab:
