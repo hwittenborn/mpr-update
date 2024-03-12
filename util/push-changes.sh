@@ -10,4 +10,6 @@ makedeb --print-srcinfo > .SRCINFO
 
 git add .
 git commit -m "Bump version to '${pkgver}-${pkgrel}'"
-GIT_SSH_COMMAND='ssh -v' git push
+
+# Push under the root user since they own the SSH config we need.
+sudo git push
