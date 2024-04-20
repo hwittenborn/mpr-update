@@ -23,13 +23,13 @@ jobs:
       matrix:
         pkgbase:
           - bats
-          - bitwarden-bin
           - chezmoi
           - docker-compose
           - drone-cli
           - element-desktop-bin
           - fd
           - glab
+          - glow
           - golang-go
           - google-chrome-stable
           - hugo
