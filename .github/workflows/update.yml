@@ -24,6 +24,7 @@ jobs:
         pkgbase:
           - bats
           - chezmoi
+          - deno
           - docker-compose
           - drone-cli
           - element-desktop-bin
